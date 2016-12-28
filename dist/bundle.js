@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports) {
 
-	console.log('oi! (-;');
+	console.log('Webpack is NOT working! (-;');
 
 
 /***/ }

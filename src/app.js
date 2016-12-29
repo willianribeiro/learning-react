@@ -1,6 +1,6 @@
 'use strict'
 
-var React = require('react');
+import React from 'react';
 
 var h1 = React.createElement('h1', null, 'Título do meu h1 - Hello World!');
 var Title = React.createClass({
@@ -9,4 +9,4 @@ var Title = React.createClass({
   }
 });
 
-module.exports = Title;
+export default Title

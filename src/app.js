@@ -1,11 +1,11 @@
 'use strict'
 
-import React from 'react';
+import React from 'react'
 
 const App = React.createClass({
-  render: function() {
+  render: () => {
     return <div>My Application</div>
   }
-});
+})
 
 export default App

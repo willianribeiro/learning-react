@@ -1,17 +1,23 @@
 'use strict'
 
 import React from 'react'
-import Title from './Title'
+import Square from './square'
 
-const App = React.createClass({
-  render: () => {
+class App extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      color: 'purple'
+    }
+  }
+
+  render () {
     return (
       <div>
-        { /* <Title name={'Willian Ribeiro'} /> */ }
-        <Title />
+        <Square color={this.state.color} />
       </div>
     )
   }
-})
+}
 
 export default App

@@ -7,23 +7,24 @@ class App extends React.Component {
   constructor () {
     super()
     this.state = {
-      isTimerVisible: true
+      isTimerVisible: true,
+      time: 0
     }
-    this.toggleTimer = this.toggleTimer.bind(this)
+    this.changeProps = this.changeProps.bind(this)
   }
 
-  toggleTimer () {
-    this.setState({ isTimerVisible: !this.state.isTimerVisible })
+  changeProps () {
+    this.setState({ time: this.state.time + 10 })
   }
 
   render () {
     return (
       <div>
         {
-            this.state.isTimerVisible && <Timer />
+            this.state.isTimerVisible && <Timer time={this.state.time} />
         }
-        <button onClick={this.toggleTimer}>
-          Show/Hide Timer
+        <button onClick={this.changeProps}>
+          Change Props
         </button>
       </div>
     )

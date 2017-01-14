@@ -48,6 +48,12 @@ class Timer extends React.Component {
     return true
   }
 
+  // Este método é o último método executado antes de renderizar o
+  // componente novamente
+  componentWillUpdate (nextProps, nextState) {
+    console.log('componentWillUpdate', nextProps, nextState)
+  }
+
   // Este método é chamado toda vez que há alguma alteração no state ou
   // no props do componente
   render () {

@@ -20,6 +20,14 @@ it('map([1,2], (item, index, arr) => arr) should return [[1,2],[1,2]]', () => {
     .to.be.deep.equals([[1,2],[1,2]]);
 });
 
+it('map([1,2]) should return [1,2]', () => {
+  expect(map([1,2])).to.be.deep.equals([1,2]);
+});
+
 it('map([]) should return []', () => {
   expect(map([])).to.be.deep.equals([]);
+});
+
+it('map() should return []', () => {
+  expect(map()).to.be.deep.equals([]);
 });

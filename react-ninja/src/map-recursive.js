@@ -1,12 +1,16 @@
 'use strict'
 
-const map = (arr, func) => {
-    
-    if (arr.length === 1)
-        return func(arr[0]);
+const map = (arr = [], func = (item) => item) => {
+    const counter = 0;
 
-    const [head, ...tail] = arr;
-    return [func(head), map(tail, func)];
+    return (function mapInternal (arrInternal, counter) {
+        const [head, ...tail] = arrInternal;
+
+        return arrInternal.length === 0 ? [] : [
+            func(head, counter, arr),
+            ...mapInternal(tail, counter + 1)
+        ];
+    })(arr, counter);
 }
 
 export default map;

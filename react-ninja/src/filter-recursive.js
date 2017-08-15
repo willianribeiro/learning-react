@@ -1,23 +1,19 @@
 'use strict'
 
 const filter = (arr = [], func = item => item) => {
-    let counter = 0;
+    return (function filterInternal (arrayInternal, counter) {
+        const [head, ...tail] = arrayInternal;
 
-    const internalFilter = (arr2) => {
-        if (arr2.length === 0)
+        if (arrayInternal.length === 0)
             return [];
-
-        const [head, ...tail] = arr2;
 
         return func(head, counter, arr) ? [
             head,
-            ...internalFilter(tail, counter++)
+            ...filterInternal(tail, counter + 1)
         ] : [
-            ...internalFilter(tail, counter++)
+            ...filterInternal(tail, counter + 1)
         ];
-    }
-
-    return internalFilter(arr, counter);
+    })(arr, 0);
 }
 
 export default filter;

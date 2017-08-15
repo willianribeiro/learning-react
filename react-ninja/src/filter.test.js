@@ -34,3 +34,13 @@ it('filter([1,1,1,1], item => item === 10) should return []', () => {
 it('filter([null,10,1,1], item => item === 10) should return []', () => {
     expect(filter([null,10,1,1], item => item === 10)).to.be.deep.equal([10]);
 });
+
+it('filter([1,2,3,5], (item, index) => item === index + 1) should return [1,2,3]', () => {
+    const before = filter([1,2,3,5], (item, index) => item === index + 1);
+    expect(before).to.be.deep.equal([1,2,3]);
+});
+
+it('filter([1,3,4,1,2,2], (item, index, arr) => index === arr.indexOf(item) should return [1,3,4,2]', () => {
+    const before = filter([1,3,4,1,2,2], (item, index, arr) => index === arr.indexOf(item));
+    expect(before).to.be.deep.equal([1,3,4,2]);
+});

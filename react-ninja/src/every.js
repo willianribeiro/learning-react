@@ -1,7 +1,7 @@
 'use strict'
 
 
-const every = (arr, func) => { // [1, 2, 3] | item => item > 1
+const every = (arr, func) => {
     let output = true;
 
     if (!arr || !func) return null;

@@ -34,11 +34,3 @@ it('every([1,2,3], (item, index) => item < index) should return false', () => {
 it('every([1,2,3], (item, index, arr) => item === arr[index]) should return true', () => {
     expect(every([1,2,3], (item, index, arr) => item === arr[index])).to.be.ok;
 });
-
-it('every() should return null', () => {
-    expect(every()).to.be.equal(null);
-});
-
-it('every([1,2,3]) should return null', () => {
-    expect(every([1,2,3])).to.be.equal(null);
-});

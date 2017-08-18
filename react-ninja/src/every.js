@@ -1,18 +1,12 @@
 'use strict'
 
-
 const every = (arr, func) => {
-    let output = true;
+    for (let i = 0; i < arr.length; i++) {
+        if (!func(arr[i], i, arr)) 
+            return false;
+    }
 
-    if (!arr || !func) return null;
-
-    arr.forEach((item, index, arr) => {
-        if (!func(item, index, arr)) {
-            output = false;
-        }
-    });
-
-    return output;
+    return true;
 }
 
 export default every;

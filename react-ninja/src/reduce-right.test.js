@@ -49,6 +49,8 @@ it('reduceRight([1, 1, 1], (acc, item, index, arr) => acc + arr[item]) should re
     expect(before).to.be.equal(after);
 });
 
-// it('', () => {
-
-// });
+it('reduceRight(["one", "two"], (acc, item, index, arr) => { acc["number-" + item] = item; return acc }, {}) ', () => {
+    const before = reduceRight(["one", "two"], (acc, item, index, arr) => { acc["number-" + item] = item; return acc }, {});
+    const after = { "number-one": "one", "number-two": "two"};
+    expect(before).to.be.deep.equal(after);
+});

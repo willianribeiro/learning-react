@@ -34,3 +34,28 @@ it('sum([]) should return 0', () => {
 it('sum() should return 0', () => {
     expect(sum()).to.be.equal(0);
 });
+
+it('sum(["1", "2", "3"]) should throw an TypeError', () => {
+    let error;
+
+    try {
+        sum(["1", "2", "3"]);
+    } catch (e) {
+        error = e;
+    }
+
+    expect(error.name).to.be.equal('TypeError');
+});
+
+it('sum(["1", "2", "3"]) should throw an TypeError with message: You need to provide an array of string', () => {
+    let error;
+
+    try {
+        sum(["1", "2", "3"]);
+    } catch (e) {
+        error = e;
+    }
+
+    expect(error.name).to.be.equal('TypeError');
+    expect(error.message).to.be.equal('You need to provide an array of string');
+});

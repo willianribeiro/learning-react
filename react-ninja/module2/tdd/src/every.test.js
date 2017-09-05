@@ -34,3 +34,53 @@ it('every([1,2,3], (item, index) => item < index) should return false', () => {
 it('every([1,2,3], (item, index, arr) => item === arr[index]) should return true', () => {
     expect(every([1, 2, 3], (item, index, arr) => item === arr[index])).to.be.ok;
 });
+
+it('every("1,2,3", (item) =>  item) should throw a TypeError', () => {
+    let error;
+
+    try {
+        every("1,2,3", (item) =>  item);
+    } catch (e) {
+        error = e;
+    }
+
+    expect(error.name).to.be.equal('TypeError');
+});
+
+it('every("1,2,3", (item) =>  item) should throw a TypeError with message: First parameter must to be an array', () => {
+    let error;
+
+    try {
+        every("1,2,3", (item) =>  item);
+    } catch (e) {
+        error = e;
+    }
+
+    expect(error.name).to.be.equal('TypeError');
+    expect(error.message).to.be.equal('First parameter must to be an array');
+});
+
+it('every([1, 2, 3], "func") should throw a TypeError', () => {
+    let error;
+
+    try {
+        every([1, 2, 3], "func");
+    } catch (e) {
+        error = e;
+    }
+
+    expect(error.name).to.be.equal('TypeError');
+});
+
+it('every([1, 2, 3], "func") should throw a TypeError with message: Second parameter must to be a function', () => {
+    let error;
+
+    try {
+        every([1, 2, 3], "func");
+    } catch (e) {
+        error = e;
+    }
+
+    expect(error.name).to.be.equal('TypeError');
+    expect(error.message).to.be.equal('Second parameter must to be a function');
+});

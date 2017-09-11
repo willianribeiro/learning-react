@@ -1,6 +1,6 @@
 'use strict'
 
-import reverse from './reverse';
+import reverse from '../reverse/reverse';
 
 const isUndefined = (value) => value === undefined;
 

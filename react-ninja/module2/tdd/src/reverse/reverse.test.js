@@ -18,3 +18,16 @@ it('reverse([4, 5, 6]) should be [6, 5, 4]', () => {
 it('reverse([42]) should be [42]', () => {
     expect(reverse([42])).to.be.deep.equal([42]);
 });
+
+it('reverse("array") should throw a TypeError exception with message: "You must provide an array"', () => {
+    let error;
+
+    try {
+        reverse("array");
+    } catch (e) {
+        error = e;
+    }
+
+    expect(error.name).to.be.equal('TypeError');
+    expect(error.message).to.be.equal('You must provide an array');
+});

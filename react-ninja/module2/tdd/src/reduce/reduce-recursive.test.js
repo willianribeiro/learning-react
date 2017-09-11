@@ -44,3 +44,29 @@ it('reduce([2,3], (acc, item, index, arr) => acc + arr[index], 0) should return 
     const after = 5;
     expect(before).to.be.equal(after);
 });
+
+it('reduce("array", () => {}) should throw a TypeError exception with message: "First parameter must be an array"', () => {
+    let error;
+
+    try {
+        reduce("array", () => {});
+    } catch (e) {
+        error = e;
+    }
+
+    expect(error.name).to.be.equal('TypeError');
+    expect(error.message).to.be.equal('First parameter must be an array');
+});
+
+it('reduce([1, 2], "func") should throw a TypeError exception with message: "Second parameter must be a function"', () => {
+    let error;
+
+    try {
+        reduce([1, 2], "func");
+    } catch (e) {
+        error = e;
+    }
+
+    expect(error.name).to.be.equal('TypeError');
+    expect(error.message).to.be.equal('Second parameter must be a function');
+});

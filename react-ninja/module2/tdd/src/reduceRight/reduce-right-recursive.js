@@ -5,6 +5,12 @@ import reverse from '../reverse/reverse';
 const isUndefined = (value) => value === undefined;
 
 const reduceRight = (arr, func, initialValue) => {
+    if (!Array.isArray(arr))
+        throw new TypeError('First parameter must be an array');
+
+    if(typeof func !== 'function') 
+        throw new TypeError('Second parameter must be a function');
+
     const arrReversed= reverse(arr);
     const [head, ...tail] = arrReversed;
     const acc = isUndefined(initialValue) ? head : initialValue;

@@ -54,3 +54,28 @@ it('reduceRight(["one", "two"], (acc, item, index, arr) => { acc["number-" + ite
     const after = { "number-one": "one", "number-two": "two"};
     expect(before).to.be.deep.equal(after);
 });
+
+
+it('reduceRight("array", () => {}) should throw a TypeError exception with message: "First parameter must be an array"', () => {
+    let error;
+    try {
+        reduceRight("array", () => {});
+    } catch (e) {
+        error = e;
+    }
+
+    expect(error.name).to.be.equal('TypeError');
+    expect(error.message).to.be.equal('First parameter must be an array');
+});
+
+it('reduceRight([1, 2], "function") should throw a TypeError exception with message: "Second parameter must be a function"', () => {
+    let error;
+    try {
+        reduceRight([1, 2], "function");
+    } catch (e) {
+        error = e;
+    }
+
+    expect(error.name).to.be.equal('TypeError');
+    expect(error.message).to.be.equal('Second parameter must be a function');
+});

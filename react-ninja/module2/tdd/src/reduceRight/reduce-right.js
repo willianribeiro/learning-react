@@ -1,6 +1,12 @@
 'use strict'
 
 const reduceRight = (arr, func, initialValue) => {
+    if (!Array.isArray(arr))
+        throw new TypeError('First parameter must be an array');
+
+    if(typeof func !== 'function') 
+        throw new TypeError('Second parameter must be a function');
+
     let acc = initialValue;
     let arr2 = arr;
     let lastIndex = arr.length - 1;

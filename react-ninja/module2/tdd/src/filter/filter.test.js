@@ -44,3 +44,29 @@ it('filter([1,3,4,1,2,2], (item, index, arr) => index === arr.indexOf(item) shou
     const before = filter([1,3,4,1,2,2], (item, index, arr) => index === arr.indexOf(item));
     expect(before).to.be.deep.equal([1,3,4,2]);
 });
+
+it('filter("array", () => {}) should throw a TypeError exception with message: "First parameter must be an array"', () => {
+    let error;
+
+    try {
+        filter("array", () => {})
+    } catch (e) {
+        error = e;
+    }
+
+    expect(error.name).to.be.equal('TypeError');
+    expect(error.message).to.be.equal('First parameter must be an array');
+});
+
+it('filter([1, 2], "function") should throw a TypeError exception with message: "Second parameter must be a function"', () => {
+    let error;
+
+    try {
+        filter([1, 2], "function")
+    } catch (e) {
+        error = e;
+    }
+
+    expect(error.name).to.be.equal('TypeError');
+    expect(error.message).to.be.equal('Second parameter must be a function');
+});

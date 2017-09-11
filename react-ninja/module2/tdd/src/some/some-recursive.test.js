@@ -30,3 +30,29 @@ it('some([1,2,3], (item, index) => item - 1 === index)', () => {
 it('some([1,2,3], (item, index, arr) => arr[index] === item)', () => {
     expect(some([1, 2, 3], (item, index, arr) => arr[index] === item)).to.be.ok;
 });
+
+it('some("array", () => {}) should throw a TypeError exception with message: "First parameter must be an array"', () => {
+    let error;
+
+    try {
+        some("array", () => {});
+    } catch (e) {
+        error = e;
+    }
+    
+    expect(error.name).to.be.equal('TypeError');    
+    expect(error.message).to.be.equal('First parameter must be an array');
+});
+
+it('some([1, 2], "function") should throw a TypeError exception with message: "Second parameter must be a function"', () => {
+    let error;
+
+    try {
+        some([1, 2], "function");
+    } catch (e) {
+        error = e;
+    }
+    
+    expect(error.name).to.be.equal('TypeError');    
+    expect(error.message).to.be.equal('Second parameter must be a function');
+});

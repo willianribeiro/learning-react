@@ -16,13 +16,19 @@ const counter = (state = 0, action) => {
 const { createStore } = Redux;
 const store = createStore(counter);
 
-// store initial state
-console.log(store.getState());
-
 store.subscribe(() => {
-    console.log('disparou uma ação!', store.getState());
+    updateView();
 });
 
-store.dispatch({ type: 'INCREMENT' });
-store.dispatch({ type: 'INCREMENT' });
-store.dispatch({ type: 'INCREMENT' });
+const increment = () => {
+    store.dispatch({ type: 'INCREMENT' });
+}
+
+const decrement = () => {
+    store.dispatch({ type: 'DECREMENT' });
+}
+
+const updateView = () => {
+    const target = document.getElementById('js-counter');
+    target.innerText = store.getState();
+}

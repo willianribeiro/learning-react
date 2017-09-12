@@ -1,5 +1,6 @@
 'use strict'
 
+// Create a redux reducer
 const counter = (state = 0, action) => {
     switch (action.type) {
         case 'INCREMENT':
@@ -13,22 +14,28 @@ const counter = (state = 0, action) => {
     }
 };
 
+
+// Create store
 const { createStore } = Redux;
 const store = createStore(counter);
 
-store.subscribe(() => {
-    updateView();
+
+// Get DOM elements
+const $counter = document.querySelector('[data-id="counter"]');
+const $increment = document.querySelector('[data-id="increment"]');
+const $decrement = document.querySelector('[data-id="decrement"]');
+
+
+// Add event listeners
+$increment.addEventListener('click', () => {
+    store.dispatch({ type: 'INCREMENT' });
+});
+$decrement.addEventListener('click', () => {
+    store.dispatch({ type: 'DECREMENT' });
 });
 
-const increment = () => {
-    store.dispatch({ type: 'INCREMENT' });
-}
 
-const decrement = () => {
-    store.dispatch({ type: 'DECREMENT' });
-}
-
-const updateView = () => {
-    const target = document.getElementById('js-counter');
-    target.innerText = store.getState();
-}
+// Update view after a store.dispatch
+store.subscribe(() => {
+    $counter.innerText = store.getState();
+});

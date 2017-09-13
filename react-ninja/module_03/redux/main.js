@@ -25,24 +25,28 @@ const createStore = (reducer) => {
     let state;
     let subscriptions = [];
 
+    const getState = () => state;
+
+    const dispatch = (action) => {
+        state = reducer(state, action);
+        subscriptions.forEach((subscription) => {
+            subscription();
+        });
+    };
+
+    const subscribe = (callback) => {
+        subscriptions.push(callback);
+        return () => {
+            subscriptions = subscriptions.filter(subscription => (
+                subscription !== callback
+            ));
+        }
+    };
+
     return {
-        getState: () => {
-            return state;
-        },
-        dispatch: (action) => {
-            state = reducer(state, action);
-            subscriptions.forEach((subscription) => {
-                subscription();
-            });
-        },
-        subscribe: (callback) => {
-            subscriptions.push(callback);
-            return () => {
-                subscriptions = subscriptions.filter(subscription => (
-                    subscription !== callback
-                ));
-            }
-        },
+        getState,
+        dispatch,
+        subscribe,
     }
 }
 

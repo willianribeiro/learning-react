@@ -31,14 +31,17 @@ const createStore = (reducer) => {
         },
         dispatch: (action) => {
             state = reducer(state, action);
-            console.log('dispachou uma acao!', state);
-
             subscriptions.forEach((subscription) => {
                 subscription();
             });
         },
         subscribe: (callback) => {
             subscriptions.push(callback);
+            return () => {
+                subscriptions = subscriptions.filter(subscription => (
+                    subscription !== callback
+                ));
+            }
         },
     }
 }
@@ -65,3 +68,15 @@ $decrement.addEventListener('click', () => {
 store.subscribe(() => {
     $counter.innerText = store.getState();
 });
+
+
+// Print state after a store.dispach
+const unsubscribe = store.subscribe(() => {
+    console.log('dispatched an action!', store.getState());
+});
+
+
+// Unsubscribe after 5 seconds
+setTimeout(() => {
+    unsubscribe();
+}, 5000);

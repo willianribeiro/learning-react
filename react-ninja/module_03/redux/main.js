@@ -16,7 +16,33 @@ const counter = (state = 0, action) => {
 
 
 // Create store
-const { createStore } = Redux;
+// const { createStore } = Redux;
+// const store = createStore(counter);
+
+
+// Implement createStore function
+const createStore = (reducer) => {
+    let state;
+    let subscriptions = [];
+
+    return {
+        getState: () => {
+            return state;
+        },
+        dispatch: (action) => {
+            state = reducer(state, action);
+            console.log('dispachou uma acao!', state);
+
+            subscriptions.forEach((subscription) => {
+                subscription();
+            });
+        },
+        subscribe: (callback) => {
+            subscriptions.push(callback);
+        },
+    }
+}
+
 const store = createStore(counter);
 
 

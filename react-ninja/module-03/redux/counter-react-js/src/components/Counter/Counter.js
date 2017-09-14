@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const Counter = ({
+export const Counter = ({
   counter,
   increment,
   decrement

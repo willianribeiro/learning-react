@@ -14,6 +14,11 @@ const reducer = (state = 0, action) => {
 const store = createStore(reducer)
 
 class Counter extends PureComponent {
+  constructor () {
+    super()
+    this.unsubscribe = null
+  }
+
   increment = () => {
     store.dispatch({
       type: 'INCREMENT'
@@ -27,7 +32,11 @@ class Counter extends PureComponent {
   }
 
   componentDidMount () {
-    store.subscribe(() => this.forceUpdate())
+    this.unsubscribe = store.subscribe(() => this.forceUpdate())
+  }
+
+  componentWillUnmount () {
+    this.unsubscribe()
   }
 
   render () {

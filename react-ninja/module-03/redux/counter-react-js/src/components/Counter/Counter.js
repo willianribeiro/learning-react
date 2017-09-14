@@ -1,36 +1,25 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
-import CounterView from './CounterView'
-
-class Counter extends PureComponent {
-  increment = () => {
-    this.props.dispatch({
-      type: 'INCREMENT'
-    })
-  }
-
-  decrement = () => {
-    this.props.dispatch({
-      type: 'DECREMENT'
-    })
-  }
-
-  render () {
-    const { counter } = this.props
-
-    return (
-      <CounterView
-        counter={counter}
-        increment={this.increment}
-        decrement={this.decrement}
-      />
-    )
-  }
-}
-
-const mapStateToProps = state => (
-  { counter: state }
+const Counter = ({
+  counter,
+  increment,
+  decrement
+}) => (
+  <div>
+    <h1>{counter}</h1>
+    <button onClick={decrement}>-</button>
+    <button onClick={increment}>+</button>
+  </div>
 )
 
-export default connect(mapStateToProps)(Counter)
+const mapStateToProps = state => ({
+  counter: state
+})
+
+const mapDispatchToProps = dispatch => ({
+  increment: () => dispatch({ type: 'INCREMENT' }),
+  decrement: () => dispatch({ type: 'DECREMENT' })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter)

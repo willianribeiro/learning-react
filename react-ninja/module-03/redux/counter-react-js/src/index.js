@@ -4,6 +4,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 import App from './app'
 
 const reducer = (state = 0, action) => {
@@ -19,7 +20,9 @@ const store = createStore(reducer)
 const renderApp = (NextApp) => {
   render(
     <AppContainer>
-      <NextApp store={store} />
+      <Provider store={store}>
+        <NextApp />
+      </Provider>
     </AppContainer>,
     document.querySelector('[data-js="app"]')
   )

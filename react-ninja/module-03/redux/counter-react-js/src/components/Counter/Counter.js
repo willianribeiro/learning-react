@@ -1,17 +1,6 @@
 import React, { PureComponent } from 'react'
 
 import CounterView from './CounterView'
-import { createStore } from 'redux'
-
-const reducer = (state = 0, action) => {
-  switch (action.type) {
-    case 'INCREMENT': return state + 1
-    case 'DECREMENT': return state - 1
-    default: return state
-  }
-}
-
-const store = createStore(reducer)
 
 class Counter extends PureComponent {
   constructor () {
@@ -20,19 +9,19 @@ class Counter extends PureComponent {
   }
 
   increment = () => {
-    store.dispatch({
+    this.props.store.dispatch({
       type: 'INCREMENT'
     })
   }
 
   decrement = () => {
-    store.dispatch({
+    this.props.store.dispatch({
       type: 'DECREMENT'
     })
   }
 
   componentDidMount () {
-    this.unsubscribe = store.subscribe(() => this.forceUpdate())
+    this.unsubscribe = this.props.store.subscribe(() => this.forceUpdate())
   }
 
   componentWillUnmount () {
@@ -40,7 +29,7 @@ class Counter extends PureComponent {
   }
 
   render () {
-    const counter = store.getState()
+    const counter = this.props.store.getState()
 
     return (
       <CounterView

@@ -1,17 +1,17 @@
-import React from 'react';
+import React from 'react'
 
 const Counter = ({
   counter,
   increment,
-  decrement,
+  decrement
 }) => {
   return (
-  <div>
-    <h1>{counter}</h1>
-    <button onClick={decrement}>-</button>
-    <button onClick={increment}>+</button>
-  </div>
+    <div>
+      <h1>{counter}</h1>
+      <button onClick={decrement}>-</button>
+      <button onClick={increment}>+</button>
+    </div>
   )
-};
+}
 
-export default Counter;
+export default Counter
